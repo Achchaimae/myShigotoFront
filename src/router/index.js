@@ -5,6 +5,7 @@ import Company from '@/views/user/Companies.vue'
 import Login from '@/views/user/Login.vue'
 import Register from '@/views/user/Register.vue'
 import Jobs from '@/views/user/Jobs.vue'
+import Messages from '@/views/user/Messages.vue'
 
 
 const routes = [
@@ -32,6 +33,15 @@ const routes = [
         path: '/Jobs',
         name : 'Jobs',
         component: Jobs
+    },
+    {
+        path : '/Messages',
+        name : 'Messages',
+        component : Messages
+
+
+
+        
     }
 ];
 
