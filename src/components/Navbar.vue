@@ -8,6 +8,7 @@
       <a href="/Jobs"> Jobs </a>
       <a href="/company"> Companies </a>
       <a href="/Messages"> Messages </a>
+      
     </div>
     <div class="flex md:hidden">
       <button @click="toggleMenu" class="flex items-center px-3 py-2 rounded text-white hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700">
@@ -21,10 +22,13 @@
         <a href="/Jobs" class="block px-4 py-2 text-white hover:bg-gray-700"> Jobs </a>
         <a href="/company" class="block px-4 py-2 text-white hover:bg-gray-700"> Companies </a>
         <a href="/Messages" class="block px-4 py-2 text-white hover:bg-gray-700"> Messages </a>
+        <div class=" bg-[#9191E9;] block px-4 py-2 ">
+          <a href="/Login">Sing up</a>
+        </div>
       </div>
     </div>
     <div class="hidden md:block bg-[#9191E9;] p-2 rounded">
-      <a href="/Register">Sing up</a>
+      <a href="/Login">Sing up</a>
     </div>
   </section>
 </template>
