@@ -6,6 +6,10 @@ import Login from '@/views/user/Login.vue'
 import Register from '@/views/user/Register.vue'
 import Jobs from '@/views/user/Jobs.vue'
 import Messages from '@/views/user/Messages.vue'
+import myCompany from '@/views/company/myCompany.vue'
+import ChatCompany from '@/views/company/CompanyChat.vue'
+import application from '@/views/company/Application.vue'
+import superAdmin from '@/views/SuperAdmin.vue'
 
 
 const routes = [
@@ -38,10 +42,26 @@ const routes = [
         path : '/Messages',
         name : 'Messages',
         component : Messages
-
-
-
-        
+    },
+    {
+        path : '/myCompany',
+        name : 'myCompany',
+        component : myCompany
+    },
+    {
+        path : '/ChatCompany',
+        name : 'ChatCompany',
+        component : ChatCompany
+    },
+    {
+        path: '/Application',
+        name: 'Application',
+        component: application
+    },
+    {
+        path: '/SuperAdmin',
+        name: 'SuperAdmin',
+        component: superAdmin
     }
 ];
 
