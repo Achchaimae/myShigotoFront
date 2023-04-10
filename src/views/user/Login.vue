@@ -1,7 +1,7 @@
 <template>
     <main class="text-white">
         <Navbar />
-        <section class="flex justify-around m-center  h-[90vh] items-center">
+        <section class="flex  justify-around m-center  h-[90vh] items-center">
         
         
         <div>
@@ -48,7 +48,7 @@
             </div>
         </div>
         <!-- <div class="motion-safe:animate-bounce "> -->
-            <img src="@/assets/images/cuterobot.png" alt="" >
+            <img src="@/assets/images/cuterobot.png" alt="" class="hidden md:block">
         <!-- </div> -->
         
     </section>
