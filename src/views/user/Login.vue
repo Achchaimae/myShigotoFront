@@ -9,7 +9,7 @@
                 <h1 class=" text-4xl font-bold">Sign in to you account <span class="text-[#9191E9]">.</span></h1>
                 <div class="text-xl font-semibold">
                     New? 
-                    <a href="#" class="text-[#9191E9] ">Register Now</a>
+                    <a href="/Register" class="text-[#9191E9] ">Register Now</a>
                 </div>
             </div>
             <div class="relative py-3 sm:max-w-xl sm:mx-auto">
