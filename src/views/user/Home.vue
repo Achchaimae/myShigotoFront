@@ -45,7 +45,6 @@
       </div>
       
     </section>
-
     <img src="@/assets/images/decor2.png" alt="" class="w-44 mx-auto -mt-32" />
     <section
       class="flex justify-center flex-col items-center text-white h-auto"
