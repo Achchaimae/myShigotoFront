@@ -38,7 +38,7 @@
                  <!-- for FirstName -->
                  <div class="relative ">
                     <input autocomplete="off" id="FirstName" name="FirstName" type="text"
-                        class="peer placeholder-transparent h-10 py-4   w-[40rem] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                        class="peer placeholder-transparent h-10 py-4   w-[40vw] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                         placeholder="Enter Your First Name" />
                     <label for="FirstName"
                         class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Enter Your First Name</label>
@@ -47,7 +47,7 @@
                  <!-- for LastName -->
                  <div class="relative ">
                     <input autocomplete="off" id="LastName" name="LastName" type="text"
-                        class="peer placeholder-transparent h-10 py-4   w-[40rem] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                        class="peer placeholder-transparent h-10 py-4   w-[40vw] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                         placeholder="Enter Your Last Name" />
                     <label for="LastName"
                         class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Enter Your Last Name</label>
@@ -56,7 +56,7 @@
                 <!-- for email -->
                 <div class="relative ">
                     <input autocomplete="off" id="email" name="email" type="email"
-                        class="peer placeholder-transparent h-10 py-4   w-[40rem] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                        class="peer placeholder-transparent h-10 py-4   w-[40vw] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                         placeholder="Email address" />
                     <label for="email"
                         class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Email
@@ -66,7 +66,7 @@
                  <!-- for Password -->
                  <div class="relative ">
                     <input autocomplete="off" id="Password" name="Password" type="Password"
-                        class="peer placeholder-transparent h-10 py-4   w-[40rem] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                        class="peer placeholder-transparent h-10 py-4   w-[40vw] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                         placeholder="Enter Your Password" />
                     <label for="Password"
                         class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Enter Your Password</label>
@@ -75,7 +75,7 @@
                 <!-- for Password -->
                 <div class="relative ">
                     <input autocomplete="off" id="ConfirmPassword" name="ConfirmPassword" type="password"
-                        class="peer placeholder-transparent h-10 py-4   w-[40rem] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                        class="peer placeholder-transparent h-10 py-4   w-[40vw] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                         placeholder="Confirm Your Password" />
                     <label for="ConfirmPassword"
                         class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Confirm Your Password</label>
@@ -84,7 +84,7 @@
                 <!-- for Phone -->
                 <div class="relative ">
                     <input autocomplete="off" id="Phone" name="Phone" type="tel"
-                        class="peer placeholder-transparent h-10 py-4   w-[40rem] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                        class="peer placeholder-transparent h-10 py-4   w-[40vw] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                         placeholder="Enter Your Phone Number" />
                     <label for="Phone"
                         class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Enter Your Phone Number</label>
@@ -93,7 +93,7 @@
                 <!-- for Adreesse -->
                 <div class="relative ">
                     <input autocomplete="off" id="Adresse" name="Adresse" type="Adresse"
-                        class="peer placeholder-transparent h-10 py-4   w-[40rem] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                        class="peer placeholder-transparent h-10 py-4   w-[40vw] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                         placeholder="Enter Your Adresse" />
                     <label for="Adresse"
                         class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Enter Your Adresse</label>
@@ -102,7 +102,7 @@
                 <!-- for City -->
                 <div class="relative ">
                     <input autocomplete="off" id="City" name="City" type="text"
-                        class="peer placeholder-transparent h-10 py-4   w-[40rem] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                        class="peer placeholder-transparent h-10 py-4   w-[40vw] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                         placeholder="Enter Your City" />
                     <label for="City"
                         class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Enter Your City</label>

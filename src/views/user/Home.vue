@@ -6,10 +6,10 @@
     >
       <div class="w-full">
         <div class="text-center">
-          <p class="font-DM-Serif-Display text-5xl md:text-8xl font-semibold">
+          <p class="font-['Anton'] text-5xl md:text-7xl font-semibold">
             One step closer to
           </p>
-          <p class="font-Bakbak-One text-4xl md:text-7xl p-4">Your Dream Job</p>
+          <p class="font-['Bakbak-One'] text-4xl md:text-6xl p-4 text-[#9191E9]">Your Dream Job</p>
         </div>
         <div class="relative text-gray-600 w-full">
           <input
@@ -70,7 +70,7 @@
     </section>
     <section class="text-white">
       <div class="font-semibold text-4xl myt-2 leading-12 pl-4">
-        Get your <span class="text-[#531CB3]"> dream job</span> easily <br />
+        Get your <span class="text-[#531CB3]"> dream job</span> easily
         with just your gadget
       </div>
     </section>
