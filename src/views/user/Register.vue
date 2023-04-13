@@ -2,7 +2,7 @@
     <main>
       <Navbar />
       <section>
-        <form @submit.prevent="register" method="post" class="text-black flex flex-col w-[50%] gap-4 p-8 rounded-lg mx-auto bg-[#CFCFFA] items-center justify-around" enctype="multipart/form-data">
+        <form @submit.prevent="register" method="post" class="text-black flex flex-col w-[50%] gap-4 p-4 rounded-lg mx-auto bg-[#CFCFFA] items-center justify-center" enctype="multipart/form-data">
           <!-- user image -->
           <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 ml-2 sm:col-span-4 md:mr-3">
             <!-- Photo File Input -->
@@ -27,78 +27,87 @@
               </button>
             </div>
           </div>
-  
-          <!-- for FirstName -->
-          <div class="relative ">
-            <input autocomplete="off" id="FirstName" v-model="form.FirstName"  type="text"
-              class="peer placeholder-transparent h-10 py-4   w-[40vw] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-rose-600"
-              placeholder="Enter Your First Name" />
-            <label for="FirstName"
-              class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Enter Your First Name</label>
-          </div>
-                 <!-- for LastName -->
+          <div class="flex flex-row justify-between gap-3 flex-wrap">
+             <!-- for FirstName -->
+            <div class="relative ">
+                <input autocomplete="off" id="FirstName" v-model="form.FirstName"  type="text"
+                class="peer placeholder-transparent h-10 py-4   w-[20vw] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-rose-600"
+                placeholder="Enter Your First Name" />
+                <label for="FirstName"
+                class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Enter Your First Name</label>
+            </div >
+                <!-- for error message -->
+            <div v-if="errors.FirstName">
+                <p class="text-red-500 text-sm">{{ errors.FirstName }}</p>
+
+            </div>
+             <!-- for LastName -->
                  <div class="relative ">
                     <input autocomplete="off" id="LastName" v-model="form.LastName" type="text"
-                        class="peer placeholder-transparent h-10 py-4   w-[40vw] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                        class="peer placeholder-transparent h-10 py-4   w-[20vw] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                         placeholder="Enter Your Last Name" />
                     <label for="LastName"
                         class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Enter Your Last Name</label>
                 </div>
 
+          </div>
+          
                 <!-- for email -->
                 <div class="relative ">
                     <input autocomplete="off" id="email" v-model="form.email" type="email"
-                        class="peer placeholder-transparent h-10 py-4   w-[40vw] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                        class="peer placeholder-transparent h-10 py-4   w-[41vw] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                         placeholder="Email address" />
                     <label for="email"
                         class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Email
                         Address</label>
                 </div>
-
-                 <!-- for Password -->
-                 <div class="relative ">
-                    <input autocomplete="off" id="Password" v-model="form.password" type="Password"
-                        class="peer placeholder-transparent h-10 py-4   w-[40vw] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                        placeholder="Enter Your Password" />
-                    <label for="Password"
-                        class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Enter Your Password</label>
-                </div>
-
-                <!-- for Password -->
-                <div class="relative ">
-                    <input autocomplete="off" id="ConfirmPassword" v-model="form.confirm_password" type="password"
-                        class="peer placeholder-transparent h-10 py-4   w-[40vw] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                        placeholder="Confirm Your Password" />
-                    <label for="ConfirmPassword"
-                        class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Confirm Your Password</label>
-                </div>
-
                 <!-- for Phone -->
                 <div class="relative ">
                     <input autocomplete="off" id="Phone" v-model="form.phone" type="tel"
-                        class="peer placeholder-transparent h-10 py-4   w-[40vw] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                        class="peer placeholder-transparent h-10 py-4   w-[41vw] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                         placeholder="Enter Your Phone Number" />
                     <label for="Phone"
                         class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Enter Your Phone Number</label>
                 </div>
+                <div class="flex flex-row justify-between gap-3 flex-wrap">
+                    <!-- for Password -->
+                    <div class="relative ">
+                        <input autocomplete="off" id="Password" v-model="form.password" type="Password"
+                            class="peer placeholder-transparent h-10 py-4   w-[20vw] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                            placeholder="Enter Your Password" />
+                        <label for="Password"
+                            class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Enter Your Password</label>
+                    </div>
 
-                <!-- for Adreesse -->
-                <div class="relative ">
-                    <input autocomplete="off" id="Adresse" v-model="form.address" type="Adresse"
-                        class="peer placeholder-transparent h-10 py-4   w-[40vw] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                        placeholder="Enter Your Adresse" />
-                    <label for="Adresse"
-                        class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Enter Your Adresse</label>
+                    <!-- to confirm Password -->
+                    <div class="relative ">
+                        <input autocomplete="off" id="ConfirmPassword" v-model="form.confirm_password" type="password"
+                            class="peer placeholder-transparent h-10 py-4   w-[20vw] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                            placeholder="Confirm Your Password" />
+                        <label for="ConfirmPassword"
+                            class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Confirm Your Password</label>
+                    </div>
                 </div>
+                <div class="flex flex-row justify-between gap-3 flex-wrap">
+                    <!-- for Adreesse -->
+                        <div class="relative ">
+                            <input autocomplete="off" id="Adresse" v-model="form.address" type="Adresse"
+                                class="peer placeholder-transparent h-10 py-4   w-[20vw] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                                placeholder="Enter Your Adresse" />
+                            <label for="Adresse"
+                                class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Enter Your Adresse</label>
+                        </div>
 
-                <!-- for City -->
-                <div class="relative ">
-                    <input autocomplete="off" id="City" type="text" v-model="form.city"
-                        class="peer placeholder-transparent h-10 py-4   w-[40vw] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                        placeholder="Enter Your City" />
-                    <label for="City"
-                        class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Enter Your City</label>
+                        <!-- for City -->
+                        <div class="relative ">
+                            <input autocomplete="off" id="City" type="text" v-model="form.city"
+                                class="peer placeholder-transparent h-10 py-4   w-[20vw] border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                                placeholder="Enter Your City" />
+                            <label for="City"
+                                class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Enter Your City</label>
+                        </div>
                 </div>
+                
 
                
 
@@ -133,7 +142,7 @@ let form = reactive({
     role: 'user',
 });
 
-let errors = ref('');
+const errors = ref({});
 const uploadimage = (e) => {
     form.image = e.target.files[0];
     console.log(form.image);
@@ -170,8 +179,9 @@ const register = async () => {
 
         })
         .catch((err) => {
-            console.log(err.response.data.message);
-            errors.value = err.response.data.message;
+            if(err.response.status == 422){
+                errors.value = err.response.data.errors;
+            }
         });
 };
 

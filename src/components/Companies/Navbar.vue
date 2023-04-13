@@ -1,7 +1,7 @@
 <template>
     <aside class="bg-[#9191E9]  w-[15%] flex flex-col  h-[100vh] sm:w-60 md-62  items-center text-white  ">
         <div class="px-5 py-3 flex flex-col justify-center items-center">
-        <img src="@/assets/images/star.png" class="w-16  rounded-full border-4 border-green-500 " alt="">
+        <img src="@/assets/images/ana.jpg" class="w-16  rounded-full border-4 border-green-500 " alt="">
         <div class="font-[lobster] hidden sm:inline">Achchaimae Khalaf</div>
        
     </div>

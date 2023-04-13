@@ -1,8 +1,8 @@
 <template>
     <section class="flex justify-around items-center  mx-8 ">
         <div class="font-bold w-[50%] text-white">
-            <div class="text-4xl ">Find your dream company</div>
-            <span class="text-[#531CB3] text-2xl">and get your place</span>
+            <div class="text-5xl ">Find your dream company</div>
+            <span class="text-[#531CB3] text-4xl">and get your place</span>
             <div class="flex gap-4 mt-4">
                  
                 <div class="relative text-gray-600 w-full">
