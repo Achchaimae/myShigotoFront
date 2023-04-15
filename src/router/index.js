@@ -10,6 +10,7 @@ import myCompany from '@/views/company/myCompany.vue'
 import ChatCompany from '@/views/company/CompanyChat.vue'
 import application from '@/views/company/Application.vue'
 import superAdmin from '@/views/SuperAdmin.vue'
+import addoffre from '@/views/company/Gestion/AddOffre.vue'
 
 
 const routes = [
@@ -62,6 +63,11 @@ const routes = [
         path: '/SuperAdmin',
         name: 'SuperAdmin',
         component: superAdmin
+    },
+    {
+        path: '/add-offre',
+        name: 'add-offre',
+        component: addoffre
     }
 ];
 
