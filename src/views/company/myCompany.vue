@@ -48,17 +48,18 @@
                             <div class="flex item-center justify-center">
                                 
                                 <div class="w-4 mr-2 transform hover:text-green-500 hover:scale-110">
-                                    <a href="">
+                                    <RouterLink :to="{name: 'edit-offre', params: {id: offre.id}}">
                                         <i class="fa-solid fa-pen"></i>
-                                    </a>
+                                    </RouterLink>
                                 </div>
                             
-                                <form method="POST" @submit="deletePost">
-                                
-                                    <button type="submit" class="w-4 mr-2 transform hover:text-red-500 hover:scale-110">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </button>
-                                </form>
+                                                          
+                            
+                                <button type="submit" class="w-4 mr-2 transform hover:text-red-500 hover:scale-110" @click="deletePost(offre.id)">
+                                <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            
+
 
                             </div>
                         </td>
@@ -80,13 +81,15 @@ const router = useRouter();
 const posts = ref([]);
 const errors = ref([]);
 const offres = ref([]);
+//get the offre id to delete it
+
 
 const loadPosts = async () => {
   try {
     const res = await axios.get('http://127.0.0.1:8000/api/V1/posts');
     const data = res.data;
     offres.value = data.data;
-    console.log(data);
+    
   } catch (err) {
     console.log(err);
   }
@@ -94,25 +97,33 @@ const loadPosts = async () => {
 loadPosts();
 
 
-//delete a post
+
 const deletePost = async (id) => {
-    await axios.delete(` http://127.0.0.1:8000/api/V1/posts/${id}`)
-    .then((res) => {
-        Swal.fire({
+    if(confirm('Are you sure you want to delete this post?')){
+    //   console.log(id);
+    axios.delete('http://127.0.0.1:8000/api/V1/posts/'+id)
+        .then(res => {
+            
+           //sweet alert to show the message that the post is deleted
+           Swal.fire({
                 icon: 'success',
                 title: 'Success!',
-                text: 'the offre has been deleted successfully',
+                text: 'the offre has been added successfully',
                 confirmButtonText: 'Ok'
                 }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = '/myCompany'; 
+                    loadPosts();
                 }
                 });
-    })
-    .catch((err) => {
-       if(err.response.status == 422){
-           errors.value = err.response.data.errors;
-       }
-    });
-};
+           
+        })
+        .catch(err => {
+            console.log(err);
+        })
+            
+
+    }
+};  
+
 </script>
+
