@@ -11,6 +11,7 @@ import ChatCompany from '@/views/company/CompanyChat.vue'
 import application from '@/views/company/Application.vue'
 import superAdmin from '@/views/SuperAdmin.vue'
 import addoffre from '@/views/company/Gestion/AddOffre.vue'
+import editoffre from '@/views/company/Gestion/EditOffre.vue'
 
 
 const routes = [
@@ -68,6 +69,11 @@ const routes = [
         path: '/add-offre',
         name: 'add-offre',
         component: addoffre
+    },
+    {
+        path :'/edit-offre/:id',
+        name : 'edit-offre',
+        component : editoffre
     }
 ];
 
