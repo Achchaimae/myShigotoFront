@@ -2,7 +2,7 @@
     <main class="flex  ">
         <Navbar />
         <section class=" w-[80%] m-auto rounded-lg p-4 shadow-lg  bg-white bg-opacity-20 ">
-            <form @submit.prevent="updatePost" method="POST" class="flex flex-col bg-[#9191E9]   px-8 py-4 justify-around items-center" enctype="multipart/form-data">
+            <form @submit.prevent="updatePost(form)" method="POST" class="flex flex-col bg-[#9191E9]   px-8 py-4 justify-around items-center" enctype="multipart/form-data">
                 <!-- hidden input for the method -->
                 <input type="hidden" name="_method" value="PUT">
             <input type="file" id="file-upload" name="image" class="hidden bg-white" v-on:change="uploadimage" >
@@ -24,7 +24,7 @@
                 <span class="text-red-500">{{ errors.description }}</span>
             </div>
             <label for="tag" class="text-black font-semibold">Tag</label>
-            <input type="text" v-model="form.tag" name="tag" class="w-[70%] py-2 rounded" placeholder="Put The tags of the poste">
+            <input type="text" v-model="form.tag"   name="tag" class="w-[70%] py-2 rounded" placeholder="Put The tags of the poste">
              <div v-if="errors.tag">
                 <span class="text-red-500">{{ errors.tag }}</span>
              </div>
@@ -58,9 +58,9 @@ import { reactive , ref } from 'vue';
 //update a offre
 const router = useRouter();
 console.log(router.currentRoute.value.params.id);
-
+let id = router.currentRoute.value.params.id;
 let image ="";
-const form = reactive({
+let form = reactive({
     title: '',
     description: '',
     tag: '',
@@ -71,44 +71,78 @@ const form = reactive({
 const errors = ref({});
 
 const uploadimage = (e) => {
-    form.image = e.target.files[0];
-    console.log(form.image);
+    form.image = ""
+            let file = e.target.files[0];
+            let formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', 'ffxhctpj');
+            axios.post('https://api.cloudinary.com/v1_1/dzb9272df/upload', formData)
+                .then(response => {
+                    form.image = response.data.secure_url;
+    console.log(form.image)
+
+                })
 };
-// update a offre function with the id 
-const updatePost = async () => {
-   
+//get the offre with the id
+const getPost = async () => {
     const id = router.currentRoute.value.params.id;
-    const formData = new FormData();
-    formData.append('title', form.title);
-    formData.append('description', form.description);
-    formData.append('tag', form.tag);
-    formData.append('city', form.city);
-    formData.append('type_of_post', form.type_of_post);
-    formData.append('image', form.image);
-    
-    axios.put( "http://127.0.0.1:8000/api/V1/posts/+$id", formData ,{
-        headers: {
-            'Content-Type': 'multipart/form-data'
+    axios.get("http://127.0.0.1:8000/api/V1/posts/"+id)
+    .then((res) => {
+        form.title = res.data.data.title;
+        form.description = res.data.data.description;
+        form.tag = res.data.data.tag;
+        form.city = res.data.data.city;
+        form.type_of_post = res.data.data.type_of_post;
+        form.image = res.data.data.image;
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+};
+getPost();
+// update a offre function with the id 
+const updatePost = async (id) => {
+    try{
+        await axios.put("http://127.0.0.1:8000/api/V1/posts/" +id ,Response.data.data);
+       await router.push('/companies/offres');
+    }
+    catch(err){
+        if(err.response.status === 422){
+            errors.value = err.response.data.errors;
         }
-        })
+    }
+
+};
+   
+    // const id = router.currentRoute.value.params.id;
+    // let formData = new FormData();
+    // formData.append('title', form.title);
+    // formData.append('description', form.description);
+    // formData.append('tag', form.tag);
+    // formData.append('city', form.city);
+    // formData.append('type_of_post', form.type_of_post);
+    // formData.append('image', form.image);
+    // console.log(formData);
+    // axios.put("http://127.0.0.1:8000/api/V1/posts/" + id, formData)
         
-        .then((res) => {
-                Swal.fire({
-                        icon: 'success',
-                        title: 'Success!',
-                        text: 'the offre has been added successfully',
-                        confirmButtonText: 'Ok'
-                        }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = '/myCompany'; 
-                        }
-                        });
-            })
-            .catch((err) => {
-            if(err.response.status == 400){
-                errors.value = err.response.data.errors;
-            }
-            });
-        };
+    //     .then((res) => {
+    //             Swal.fire({
+    //                     icon: 'success',
+    //                     title: 'Success!',
+    //                     text: 'the offre has been updated successfully',
+    //                     confirmButtonText: 'Ok'
+    //                     }).then((result) => {
+    //                     if (result.isConfirmed) {
+    //                         window.location.href = '/myCompany'; 
+    //                     } 
+    //                     });
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         if(err.response.status == 400){
+    //             errors.value = err.response.data.errors;
+    //         }
+    //         });
+    //     };
 
 </script>
