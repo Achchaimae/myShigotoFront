@@ -59,7 +59,7 @@ const errors = ref({});
 
 const uploadimage = (e) => {
     form.image = e.target.files[0];
-    console.log(form.image);
+    // console.log(form.image);
 };
 const storePost = async (form) => {
     const formData = new FormData();
