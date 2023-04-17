@@ -79,7 +79,7 @@ const storePost = async () => {
     formData.append('type_of_post', form.type_of_post);
     formData.append('image', form.image);
     
-
+console.log(formData);
     await axios.post("http://127.0.0.1:8000/api/V1/posts", formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
