@@ -12,6 +12,7 @@ import application from '@/views/company/Application.vue'
 import superAdmin from '@/views/SuperAdmin.vue'
 import addoffre from '@/views/company/Gestion/AddOffre.vue'
 import editoffre from '@/views/company/Gestion/EditOffre.vue'
+import apply from '@/views/user/ApplyForm.vue'
 
 
 const routes = [
@@ -74,6 +75,11 @@ const routes = [
         path :'/edit-offre/:id',
         name : 'edit-offre',
         component : editoffre
+    },
+    {
+        path: '/apply/:id',
+        name: 'Apply',
+        component: apply
     }
 ];
 
