@@ -106,13 +106,34 @@
                             <label for="City"
                                 class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Enter Your City</label>
                         </div>
+                       
                 </div>
-                
+                <!-- for status Apprenant/ Company -->
+            <div>
+                <select v-model="form.status" @change="check" id="status" name="status" class="w-[41vw] h-10 border-2 border-gray-300 rounded-md">
+                    <!-- option to show what to do and cant be selected -->
+                    <option disabled selected>Choose your position</option>
+                    <option value="user">Apprenant</option>
+                    <option value="company">Company</option>
+                </select>
+            </div>
+            <!-- upload validation document hidden by default and shown when user select company -->
+            
+            <div  :class="show ? 'block' : 'hidden'">
+                <input type="file" @change="document_validation" class="hidden" id="image" name="image" >
 
+                <label for="image" class="bg-[#531CB3] hover:bg-[#46149d]  px-4 py-2 rounded-lg text-white">Upload your validation document</label>
+            </div>
+            <!-- loading animation -->
+            <div class="flex items-center justify-center space-x-2" bis_skin_checked="1" :class="load ? 'block' : 'hidden'">
+                <div class="w-4 h-4 rounded-full animate-pulse dark:bg-violet-400" bis_skin_checked="1"></div>
+                <div class="w-4 h-4 rounded-full animate-pulse dark:bg-violet-400" bis_skin_checked="1"></div>
+                <div class="w-4 h-4 rounded-full animate-pulse dark:bg-violet-400" bis_skin_checked="1"></div>
+	        </div>
                
 
                 
-                <button class="bg-[#531CB3] px-4 py-2 rounded-full text-white"  >
+                <button class="bg-[#531CB3] hover:bg-[#46149d] px-4 py-2 rounded-full text-white"  >
                     Register
                 </button>
             </form>
@@ -139,13 +160,47 @@ let form = reactive({
     phone: '',
     address: '',
     city: '',
-    role: 'user',
+    role: 'apprenant',
+    document_validation: '',
+    status :''
+
 });
+//id the status is company show the upload document
+const show = ref(false);
+const load = ref(false);
+
+const document_validation = (e) => {
+    //while the the file is uploading show the loading animation 
+    load.value = true;
+    let file = e.target.files[0];
+    let formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', 'ffxhctpj');
+    axios.post('https://api.cloudinary.com/v1_1/dzb9272df/upload', formData)
+        .then(response => {
+            form.document_validation = response.data.secure_url;
+            //after the file is uploaded hide the loading animation
+            load.value = false;
+        })
+
+
+};
+
+
 
 const errors = ref({});
 const uploadimage = (e) => {
-    form.image = e.target.files[0];
-    console.log(form.image);
+    form.image = ""
+            let file = e.target.files[0];
+            let formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', 'ffxhctpj');
+            axios.post('https://api.cloudinary.com/v1_1/dzb9272df/upload', formData)
+                .then(response => {
+                    form.image = response.data.secure_url;
+                    console.log(form.image)
+
+                })
 };
 const register = async () => {
     const formData = new FormData();
@@ -159,6 +214,8 @@ const register = async () => {
     formData.append('role', form.role);
     formData.append('phone', form.phone);
     formData.append('image', form.image);
+    formData.append('document_validation', form.document_validation);
+    formData.append('status', form.status);
 
     await axios.post("http://127.0.0.1:8000/api/register", formData, {
         headers: {
@@ -183,6 +240,14 @@ const register = async () => {
                 errors.value = err.response.data.errors;
             }
         });
+};
+
+const check = () => {
+    if (form.status == "company") {
+        show.value = true;
+    } else {
+        show.value = false;
+    }
 };
 
 
