@@ -79,7 +79,7 @@ const uploadimage = (e) => {
             axios.post('https://api.cloudinary.com/v1_1/dzb9272df/upload', formData)
                 .then(response => {
                     form.image = response.data.secure_url;
-    console.log(form.image)
+                    console.log(form.image)
 
                 })
 };
