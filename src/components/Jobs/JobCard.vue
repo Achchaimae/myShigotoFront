@@ -3,10 +3,10 @@
         <div class="bg-white w-64 h-72 text-black rounded-lg mt-4">
             <div class="flex">
                 <div class="relative">
-                    <img  :src="'http://127.0.0.1:8000/' + CompanyLogo" class="absolute top-8 left-3 w-16" alt />
+                    <img :src="'http://127.0.0.1:8000/' + CompanyLogo" class="absolute top-8 left-3 w-16" alt />
                     <img src="@/assets/images/card.png" alt />
                 </div>
-                <div class="p-4"> 
+                <div class="p-4">
                     <h1 class="font-bold text-xl">{{ CompanyName }}</h1>
                     <p>{{  createdAt }}</p>
                 </div>
@@ -18,7 +18,14 @@
             </div>
             <div class="flex justify-end px-4">
                 <button
-                    class="border-2 rounded-full px-8 py-2 mb-4 border-[#531CB3] hover:bg-[#531CB3] hover:text-white hover:border-white hover:cursor-pointer">Apply</button>
+                    class="border-2 rounded-full px-8 py-2 mb-4 border-[#531CB3] hover:bg-[#531CB3] hover:text-white hover:border-white hover:cursor-pointer">
+                    
+                    <!-- <RouterLink to="/apply">Apply</RouterLink> -->
+                    <RouterLink :to="{name: 'Apply', params: {id: Offreid}}">
+                        Apply
+                    </RouterLink>
+
+                </button>
             </div>
         </div>
     </div>
@@ -27,6 +34,10 @@
 <script setup>
 import { defineProps } from "vue";
 const props = defineProps({
+    Offreid: {
+        type: String,
+        required: true
+    },
     CompanyLogo: {
         type: String,
         required: true
@@ -43,7 +54,7 @@ const props = defineProps({
         type: String,
         required: true
     },
-     createdAt: {
+    createdAt: {
         type: String,
         required: true
     }

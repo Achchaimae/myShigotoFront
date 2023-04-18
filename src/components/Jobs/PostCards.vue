@@ -1,14 +1,15 @@
 <template>
-    <main>
-        <div class="flex justify-around gap-4 flex-wrap">
-            <JobCard v-for="card in offres"
-                    :CompanyName="card.title"
-                    :CompanyLogo="getImageUrl(card.image)"
-                    :OffreName="card.title"
-                    :OffreDesciption="card.description"
-                    :createdAt="formatDate(card.created_at)" />
-        </div>
-    </main>
+  <main>
+      <div class="flex justify-around gap-4 flex-wrap">
+          <JobCard v-for="card in offres"
+                  :Offreid="card.id"
+                  :CompanyName="card.title"
+                  :CompanyLogo="getImageUrl(card.image)"
+                  :OffreName="card.title"
+                  :OffreDesciption="card.description"
+                  :createdAt="formatDate(card.created_at)" />
+      </div>
+  </main>
 
 </template>
 <script setup>
@@ -28,29 +29,29 @@ const errors = ref([]);
 const offres = ref([]);
 
 const loadPosts = async () => {
-  try {
-    const res = await axios.get('http://127.0.0.1:8000/api/V1/posts');
-    const data = res.data;
-    offres.value = data.data;
-    
-  } catch (err) {
-    errors.value.push(err);
-  }
+try {
+  const res = await axios.get('http://127.0.0.1:8000/api/V1/posts');
+  const data = res.data;
+  offres.value = data.data;
+  
+} catch (err) {
+  errors.value.push(err);
+}
 };
 onMounted(loadPosts);
 
 // to get how much hour ago the post was created
 const formatDate = (date) => {
-  return dayjs(date).fromNow();
+return dayjs(date).fromNow();
 };
 
 // function to get the full URL of an image
 const getImageUrl = (imageName) => {
-  return `http://localhost:8000/storage/${imageName}`;
+return `http://localhost:8000/storage/${imageName}`;
 };
 
 const obj = reactive({
-  cards: [],
+cards: [],
 });
 
 
