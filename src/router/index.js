@@ -13,7 +13,7 @@ import superAdmin from '@/views/SuperAdmin.vue'
 import addoffre from '@/views/company/Gestion/AddOffre.vue'
 import editoffre from '@/views/company/Gestion/EditOffre.vue'
 import apply from '@/views/user/ApplyForm.vue'
-
+import CompanyProfile from '@/views/company/CompanyProfile.vue'
 
 const routes = [
     {
@@ -80,7 +80,7 @@ const routes = [
         path: '/apply/:id',
         name: 'Apply',
         component: apply
-    }
+    }, 
 ];
 
 const router = createRouter({
