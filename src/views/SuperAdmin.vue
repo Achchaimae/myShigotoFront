@@ -4,6 +4,7 @@
         <section  class="flex text-white justify-between flex-row  m-4">
             <div class="w-36 ">
                 <img src="@/assets/images/logo.png" alt="logo" />
+                 
             </div>
             <div>
                 <i class="fa-solid fa-sign-out text-2xl"></i>
@@ -31,8 +32,8 @@
                         <div class="mr-2">
                             <img class="w-12 h-12 rounded-full  object-contain bg-red-300" :src="companies.image"/>
                         </div>
-                        <span>
-                           {{companies.name }}
+                        <span class="font-semibold">
+                           {{companies.FirstName}}
                         </span>
                     </td>
                     <td class="py-3 px-6 text-left whitespace-nowrap">
@@ -71,6 +72,9 @@
 import { useRouter } from 'vue-router';
 import axios from 'axios';
 import { reactive , ref , onMounted} from 'vue';
+import { toast} from 'vue3-toastify';
+import { createToast } from 'mosha-vue-toastify';
+import 'mosha-vue-toastify/dist/style.css'
 
 const router = useRouter();
 
@@ -78,10 +82,17 @@ const test = ref('pending');
 
 const company = ref(null);
 const accept = (id) => {
-    console.log(id);
    axios.put('http://127.0.0.1:8000/api/accepted/'+id)
     .then(response => {
-         console.log(response);
+        createToast('the company get accepted',
+        {
+        
+        showIcon: 'true',
+        type: 'success',
+        position: 'bottom-left',
+        })
+
+
     })
     .catch(error => {
         console.log(error);
@@ -91,7 +102,12 @@ const accept = (id) => {
 const refuse = (id) => {
     axios.put('http://127.0.0.1:8000/api/rejected/'+id)
     .then(response => {
-         console.log(response);
+        createToast('the company get accepted',
+        {
+        showIcon: 'true',
+        type: 'danger',
+        position: 'bottom-left',
+        })
     })
     .catch(error => {
         console.log(error);

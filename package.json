@@ -12,8 +12,11 @@
     "@lottiefiles/lottie-player": "^1.7.1",
     "axios": "^1.3.5",
     "dayjs": "^1.11.7",
+    "mosha-vue-toastify": "^1.0.23",
     "vue": "^3.2.47",
-    "vue-router": "^4.1.6"
+    "vue-router": "^4.1.6",
+    "vue-toast-notification": "3.0",
+    "vue3-toastify": "^0.1.7"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
