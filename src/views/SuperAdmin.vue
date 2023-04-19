@@ -74,7 +74,7 @@ import axios from 'axios';
 import { reactive , ref , onMounted} from 'vue';
 import { toast} from 'vue3-toastify';
 import { createToast } from 'mosha-vue-toastify';
-import 'mosha-vue-toastify/dist/style.css'
+import 'mosha-vue-toastify/dist/style.css' 
 
 const router = useRouter();
 
@@ -150,6 +150,5 @@ function check(status){
 }
 
 onMounted(companies);
-// onMounted(check);
 
 </script>
