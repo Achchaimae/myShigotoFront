@@ -217,29 +217,28 @@ const register = async () => {
     formData.append('document_validation', form.document_validation);
     formData.append('status', form.status);
 
-    await axios.post("http://127.0.0.1:8000/api/register", formData, {
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        }
-    })
+        await axios.post("http://127.0.0.1:8000/api/register", formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
         .then((res) => {
             Swal.fire({
                 icon: 'success',
                 title: 'Success!',
                 text: 'You have been registered successfully',
                 confirmButtonText: 'Login'
-                }).then((result) => {
+            }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.href = '/login'; // Replace with your login page URL
                 }
-                });
-
+            });
+            console.log(res);
         })
         .catch((err) => {
-            if(err.response.status == 422){
-                errors.value = err.response.data.errors;
-            }
+            console.log(err);
         });
+    
 };
 
 const check = () => {
