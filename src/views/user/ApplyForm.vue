@@ -98,7 +98,8 @@ import Navbar from "@/components/Navbar.vue";
 import axios from "axios";
 import { reactive,  ref } from "vue";
 import { useRouter } from "vue-router";
-
+import { createToast } from 'mosha-vue-toastify';
+import 'mosha-vue-toastify/dist/style.css' 
 const router = useRouter();
 let image = "";
 const form = ref({
@@ -143,8 +144,14 @@ const Apply = async () => {
           }
       })
       .then((res) => {
-        console.log(res);
-        router.push("/apply");
+        createToast('the apply get accepted',
+        {
+        
+        showIcon: 'true',
+        type: 'success',
+        position: 'bottom-left',
+        })
+        router.push("/jobs");
       })
       .catch((err) => {
         console.log(err);
