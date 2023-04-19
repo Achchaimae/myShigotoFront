@@ -19,4 +19,5 @@ import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
 import hero from "@/components/Company/Hero.vue";
 import Companies from "@/components/Company/Companies.vue";
+
 </script>

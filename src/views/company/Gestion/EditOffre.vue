@@ -2,7 +2,7 @@
     <main class="flex  ">
         <Navbar />
         <section class=" w-[80%] m-auto rounded-lg p-4 shadow-lg  bg-white bg-opacity-20 ">
-            <form @submit.prevent="updatePost(form)" method="POST" class="flex flex-col bg-[#9191E9]   px-8 py-4 justify-around items-center" enctype="multipart/form-data">
+            <form @submit.prevent="updatePost(form)" method="put" class="flex flex-col bg-[#9191E9]   px-8 py-4 justify-around items-center" enctype="multipart/form-data">
                 <!-- hidden input for the method -->
                 <input type="hidden" name="_method" value="PUT">
             <input type="file" id="file-upload" name="image" class="hidden bg-white" v-on:change="uploadimage" >
@@ -101,16 +101,32 @@ const getPost = async () => {
 };
 getPost();
 // update a offre function with the id 
-const updatePost = async (id) => {
-    try{
-        await axios.put("http://127.0.0.1:8000/api/V1/posts/" +id ,Response.data.data);
-       await router.push('/companies/offres');
-    }
-    catch(err){
-        if(err.response.status === 422){
-            errors.value = err.response.data.errors;
-        }
-    }
+const updatePost = async () => {
+    const id = router.currentRoute.value.params.id;
+    axios.put("http://127.0.0.1:8000/api/V1/posts/"+id , form)
+    .then((res) => {
+        form.title = res.data.data.title;
+        form.description = res.data.data.description;
+        form.tag = res.data.data.tag;
+        form.city = res.data.data.city;
+        form.type_of_post = res.data.data.type_of_post;
+        form.image = res.data.data.image;
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+    // const id = router.currentRoute.value.params.id;
+    // try{
+    //     await axios.put("http://127.0.0.1:8000/api/V1/posts/" +id ,Response.data.data).then((res) => {
+    //         console.log(res);
+    //     });
+    //    await router.push('/companies/offres');
+    // }
+    // catch(err){
+    //     // if(err.response.status === 422){
+    //     //     errors.value = err.response.data.errors;
+    //     // }
+    // }
 
 };
    

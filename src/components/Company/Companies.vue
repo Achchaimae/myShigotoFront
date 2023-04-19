@@ -1,23 +1,41 @@
 <template>
     <main>
         <div class="m-4 flex  justify-around gap-4 flex-wrap">
-            <CompanyCard v-for="card in obj.cards" :CompanyName="card.CompanyName" :CompanyLogo="card.CompanyLogo" :CompanyLocation="card.CompanyLocation" />
+            <CompanyCard v-for="card in company" 
+            :CompanyName="card.FirstName" 
+            :CompanyLogo="card.image"
+            :CompanyLocation="card.city" />
         </div>
     </main>
 </template>
 <script setup>
 import CompanyCard from '@/components/Company/CompanyCard.vue'
-import { reactive } from 'vue'
+import { useRouter } from 'vue-router';
+import axios from 'axios';
+import { reactive , ref , onMounted} from 'vue';
+
+const router = useRouter();
+//showing all the companies
+const companies = ref([]);
+const errors = ref([]);
+const company = ref([]);
+
+const loadPosts = async () => {
+try {
+  const res = await axios.get('http://127.0.0.1:8000/api/showCompany');
+  const data = res.data;
+  company.value = data.data;
+  console.log(data.data);
+  
+} catch (err) {
+  errors.value.push(err);
+}
+};
+
+onMounted(loadPosts);
+
 
 const obj = reactive({
-    cards : [
-        {CompanyName: 'Oracle', CompanyLogo: 'src/assets/images/Oracle.png', CompanyLocation: 'Rabat'},
-        {CompanyName: 'Google', CompanyLogo: 'src/assets/images/Google.png', CompanyLocation: 'Casablanca'},
-        {CompanyName: 'Meta', CompanyLogo: 'src/assets/images/Meta.png', CompanyLocation: 'Rabat'},
-        {CompanyName: 'Microsoft', CompanyLogo: 'src/assets/images/Microsoft.png', CompanyLocation: 'Rabat'},
-        {CompanyName: 'Meta', CompanyLogo: 'src/assets/images/Meta.png', CompanyLocation: 'Rabat'},
-        {CompanyName: 'Oracle', CompanyLogo: 'src/assets/images/Oracle.png', CompanyLocation: 'Rabat'},
-        
-    ],
+    cards : [],
 })
 </script>
