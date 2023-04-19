@@ -105,15 +105,25 @@ const updatePost = async () => {
     const id = router.currentRoute.value.params.id;
     axios.put("http://127.0.0.1:8000/api/V1/posts/"+id , form)
     .then((res) => {
-        form.title = res.data.data.title;
-        form.description = res.data.data.description;
-        form.tag = res.data.data.tag;
-        form.city = res.data.data.city;
-        form.type_of_post = res.data.data.type_of_post;
-        form.image = res.data.data.image;
-    })
+                Swal.fire({
+                        icon: 'success',
+                        title: 'Success!',
+                        text: 'the offre has been updated successfully',
+                        confirmButtonText: 'Ok'
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = '/myCompany'; 
+                        } 
+                        });
+            })
     .catch((err) => {
-        console.log(err);
+        errors.title = error.response.data.errors.title;
+        errors.description = error.response.data.errors.description;
+        errors.tag = error.response.data.errors.tag;
+        errors.city = error.response.data.errors.city;
+        errors.type_of_post = error.response.data.errors.type_of_post;
+        errors.image = error.response.data.errors.image;
+    
     });
     // const id = router.currentRoute.value.params.id;
     // try{
