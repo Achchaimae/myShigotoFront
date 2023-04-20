@@ -75,10 +75,24 @@ let error = ref('')
 const login = async() =>{
     await axios.post('http://127.0.0.1:8000/api/login', form)
     .then(response => {
+        console.log(response.data.role);
+        console.log(response.data.data.token);
         if(response.data.success){
-            localStorage.setItem('token', response.data.token)
+            localStorage.setItem('token', response.data.data.token)
+            localStorage.setItem('role', response.data.role)
+            
+
             console.log('success');
-            router.push('/mycompany')
+           //check if user is admin or not
+            if(response.data.role == 'company'){
+                router.push('/myCompany')
+            }
+            else if(response.data.role == 'superadmin'){
+                router.push('/SuperAdmin')
+            }
+            else{
+                router.push('/messages')
+            }
         }
         else {
             error.value = response.data.message
