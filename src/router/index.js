@@ -29,12 +29,18 @@ const routes = [
     {
         path: '/Login',
         name: 'Login',
-        component: Login
+        component: Login,
+        meta : {
+            AlreadyLogin : true
+        }
     },
     {
         path: '/Register',
         name: 'Register',
-        component: Register
+        component: Register,
+        meta : {
+            AlreadyLogin : true
+        }
     },
     {
         path: '/Jobs',
@@ -44,37 +50,52 @@ const routes = [
     {
         path : '/Messages',
         name : 'Messages',
-        component : Messages
+        component : Messages,
+        meta : {
+            requiresAuth : true
+        }
     },
     {
         path : '/myCompany',
         name : 'myCompany',
-        component : myCompany
+        component : myCompany,
+        meta : {
+            companyAuth : true
+        }
     },
     {
         path : '/ChatCompany',
         name : 'ChatCompany',
-        component : ChatCompany
+        component : ChatCompany,
+        meta : {
+            companyAuth : true
+        }
     },
     {
         path: '/Application',
         name: 'Application',
-        component: application
+        component: application,
+        meta : {
+            companyAuth : true
+        }
     },
     {
         path: '/SuperAdmin',
         name: 'SuperAdmin',
-        component: superAdmin
+        component: superAdmin,
+        meta : {
+            superAdmin : true
+        }
     },
     {
         path: '/add-offre',
         name: 'add-offre',
-        component: addoffre
+        companyAuth: addoffre
     },
     {
         path :'/edit-offre/:id',
         name : 'edit-offre',
-        component : editoffre
+        companyAuth : editoffre
     },
     {
         path: '/apply/:id',
@@ -87,5 +108,66 @@ const router = createRouter({
     history: createWebHistory(),
     routes
 });
+router.beforeEach((to, from, next) => {
+    if(to.matched.some(record => record.meta.requiresAuth)) {
+        if(localStorage.getItem('token') == null) {
+            next({
+                path: '/Login',
+                params: { nextUrl: to.fullPath }
+            })
+        } else if (localStorage.getItem('role') == 'apprenant') {
+            next()
+        }
+    } else if(to.matched.some(record => record.meta.superAdmin)) {
+        if(localStorage.getItem('token') == null) {
+            next({
+                path: '/Login',
+                params: { nextUrl: to.fullPath }
+            })
+        } else if (localStorage.getItem('role') == 'superAdmin') {
+
+            next()
+        }
+        else{
+            next({
+                path: '/Login',
+                params: { nextUrl: to.fullPath }
+            })
+        }
+    }
+    else if(to.matched.some(record => record.meta.companyAuth)) {
+        if(localStorage.getItem('token') == null) {
+            next({
+                path: '/Login',
+                params: { nextUrl: to.fullPath }
+            })
+        } else if (localStorage.getItem('role') == 'company') {
+            next()
+        }
+        else{
+            next({
+                path: '/Login',
+                params: { nextUrl: to.fullPath }
+            })
+        }
+    }
+     else {
+        next()
+    }
+})
+router.beforeEach((to, from, next) => {
+    if(to.matched.some(record => record.meta.AlreadyLogin)) {
+        if(localStorage.getItem('token') == null) {
+            next()
+        } else {
+            next({ name: 'Home' })
+        }
+    } else {
+        next()
+    }
+})
+
+
+
 
 export default router;
