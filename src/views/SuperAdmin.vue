@@ -6,7 +6,7 @@
                 <img src="@/assets/images/logo.png" alt="logo" />
                  
             </div>
-            <div>
+            <div @click="logout">
                 <i class="fa-solid fa-sign-out text-2xl"></i>
             </div>
         </section>
@@ -150,5 +150,19 @@ function check(status){
 }
 
 onMounted(companies);
+
+
+
+ //logout
+
+const logout = () => {
+    localStorage.removeItem('token')
+    //taostify to say that you are logged out
+    toast.success('You are logged out')
+
+    router.push('/login')
+}
+
+
 
 </script>
