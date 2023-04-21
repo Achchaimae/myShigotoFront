@@ -76,10 +76,11 @@ const login = async() =>{
     await axios.post('http://127.0.0.1:8000/api/login', form)
     .then(response => {
         console.log(response.data.role);
-        console.log(response.data.data.token);
+        console.log(response.data);
         if(response.data.success){
-            localStorage.setItem('token', response.data.datatoken)
+            localStorage.setItem('token', response.data.token)
             localStorage.setItem('role', response.data.role)
+            localStorage.setItem('id', response.data.id)
             
 
             console.log('success');

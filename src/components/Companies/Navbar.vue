@@ -1,49 +1,45 @@
-<template>
-    <aside class="bg-[#9191E9]  w-[15%] flex flex-col  h-[100vh] sm:w-60 md-62  items-center text-white  ">
-        <div class="px-5 py-3 flex flex-col justify-center items-center">
-        <img src="@/assets/images/ana.jpg" class="w-16  rounded-full border-4 border-green-500 " alt="">
-        <div class="font-[lobster] hidden sm:inline">Achchaimae Khalaf</div>
-       
-    </div>
-    <ul class="w-full flex h-96 flex-col place-content-evenly">
-       
-            <a href="/myCompany" class="hover:bg-white hover:text-[#531CB3] p-2 ">
-                <li>
-                    <i class="fa-solid fa-briefcase px-5"></i>
-                    <span class="hidden sm:inline">Posts</span>
-                </li>
-            </a>
-            <a href="/ChatCompany" class="hover:bg-white hover:text-[#531CB3] p-2 ">
-                <li>
-                    
-                    <i class="fa-solid fa-envelope px-5"></i>
-                    <span class="hidden sm:inline">Messages</span>
-                </li>
-            </a>
-            <a href="/Application" class="hover:bg-white hover:text-[#531CB3] p-2 ">
-                <li>
-                    <i class="fa-regular fa-file-lines px-5"></i>
-                    <span class="hidden sm:inline">Application</span>
-                </li>
-            </a>
-
-            <a href="" class="hover:bg-white hover:text-[#531CB3] p-2 relative top-48">
-            <li>
-                <i class="fa-solid fa-gear px-5"></i>
-                    <span class="hidden sm:inline">Setting</span>
-                </li>
-            </a>
-            <div @click="logout" class="hover:bg-white hover:text-[#531CB3] p-2 relative top-48">
-          
-                    <i class="fa-solid fa-sign-out px-5"></i>
-                    <span class="hidden sm:inline">Logout</span>
-               
-            </div>
-        
-        
-    </ul>
+ <template>
+    <aside class="bg-[#9191E9] w-15 sm:w-60 md:w-48 h-screen flex flex-col items-center text-white">
+      <div class="px-5 py-3 flex flex-col justify-center items-center">
+        <img src="@/assets/images/ana.jpg" class="w-16 h-16 rounded-full border-4 border-green-500" alt="">
+        <div class="font-lobster hidden sm:inline">Achchaimae Khalaf</div>
+      </div>
+      <ul class="w-full flex-1 flex flex-col justify-evenly">
+        <a href="/myCompany" class="hover:bg-white hover:text-purple-500 p-2">
+          <li class="flex items-center">
+            <i class="fa-solid fa-briefcase px-5"></i>
+            <span class="hidden sm:inline">Posts</span>
+          </li>
+        </a>
+        <a href="/ChatCompany" class="hover:bg-white hover:text-purple-500 p-2">
+          <li class="flex items-center">
+            <i class="fa-solid fa-envelope px-5"></i>
+            <span class="hidden sm:inline">Messages</span>
+          </li>
+        </a>
+        <a href="/Application" class="hover:bg-white hover:text-purple-500 p-2">
+          <li class="flex items-center">
+            <i class="fa-regular fa-file-lines px-5"></i>
+            <span class="hidden sm:inline">Application</span>
+          </li>
+        </a>
+        <a href="" class="hover:bg-white hover:text-purple-500 p-2">
+          <li class="flex items-center">
+            <i class="fa-solid fa-gear px-5"></i>
+            <span class="hidden sm:inline">Setting</span>
+          </li>
+        </a>
+        <div @click="logout" class="hover:bg-white hover:text-purple-500 p-2">
+          <li class="flex items-center">
+            <i class="fa-solid fa-sign-out px-5"></i>
+            <span class="hidden sm:inline">Logout</span>
+          </li>
+        </div>
+      </ul>
     </aside>
-</template>
+  </template>
+ 
+
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
