@@ -84,13 +84,17 @@ const routes = [
         name: 'SuperAdmin',
         component: superAdmin,
         meta : {
-            superAdmin : true
+            superadmin : true
         }
     },
     {
         path: '/add-offre',
         name: 'add-offre',
-        companyAuth: addoffre
+        component: addoffre,
+       meta : {
+            companyAuth : true
+        }
+        
     },
     {
         path :'/edit-offre/:id',
@@ -102,6 +106,8 @@ const routes = [
         name: 'Apply',
         component: apply
     }, 
+
+
 ];
 
 const router = createRouter({
@@ -118,13 +124,13 @@ router.beforeEach((to, from, next) => {
         } else if (localStorage.getItem('role') == 'apprenant') {
             next()
         }
-    } else if(to.matched.some(record => record.meta.superAdmin)) {
+    } else if(to.matched.some(record => record.meta.superadmin)) {
         if(localStorage.getItem('token') == null) {
             next({
                 path: '/Login',
                 params: { nextUrl: to.fullPath }
             })
-        } else if (localStorage.getItem('role') == 'superAdmin') {
+        } else if (localStorage.getItem('role') == 'superadmin') {
 
             next()
         }
