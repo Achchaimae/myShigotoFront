@@ -15,6 +15,8 @@
           <input
             type="search"
             name="search"
+            v-model="searchValue"
+            @input="search"
             placeholder="Job title or keyword"
             class="bg-white h-10 px-5 pr-10 rounded-full w-full text-sm focus:outline-none"
           />
@@ -38,6 +40,14 @@
               />
             </svg>
           </button>
+          <div class="bg-white flex flex-col gap-2">
+              <div v-for="result in resultSearch" class="flex justify-between">
+                <p>{{ result.title }}</p>
+                <button>
+                  {{ result.id }}
+                </button>
+              </div>
+            </div>
         </div>
       </div>
       <div class="w-full flex justify-center items-center">
@@ -89,4 +99,31 @@ import Navbar from "@/components/Navbar.vue";
 import StepHome from "@/components/Home/StepHome.vue";
 import PostCards from "@/components/Home/PostCards.vue";
 import Footer from "@/components/Footer.vue";
+import axios from "axios";
+import { onMounted, reactive, ref } from "vue";
+import { useRouter } from "vue-router";
+
+//search job
+const router = useRouter();
+const searchValue = ref("");
+const resultSearch = ref('');
+const searchJob = async () => {
+  await axios
+    .get(`http://127.0.0.1:8000/api/V1/posts/search/${searchValue.value}`)
+    .then((res) => {
+      resultSearch.value = res.data;
+      console.log(resultSearch.value);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+const search = () => {
+  console.log(searchValue.value);
+  if (searchValue.value == "") {
+    resultSearch.value = "";
+  } else {
+    searchJob();
+  }
+};
 </script>
