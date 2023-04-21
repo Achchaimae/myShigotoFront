@@ -78,7 +78,7 @@ const login = async() =>{
         console.log(response.data.role);
         console.log(response.data.data.token);
         if(response.data.success){
-            localStorage.setItem('token', response.data.data.token)
+            localStorage.setItem('token', response.data.datatoken)
             localStorage.setItem('role', response.data.role)
             
 
