@@ -33,16 +33,31 @@
                     <span class="hidden sm:inline">Setting</span>
                 </li>
             </a>
-            <a href="" class="hover:bg-white hover:text-[#531CB3] p-2 relative top-48">
-            <li>
+            <div @click="logout" class="hover:bg-white hover:text-[#531CB3] p-2 relative top-48">
+          
                     <i class="fa-solid fa-sign-out px-5"></i>
                     <span class="hidden sm:inline">Logout</span>
-                </li>
-            </a>
+               
+            </div>
         
         
     </ul>
     </aside>
 </template>
 <script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { toast } from 'vue3-toastify';
+
+ //logout
+const router = useRouter()
+const logout = () => {
+    localStorage.removeItem('token')
+    //taostify to say that you are logged out
+    toast.success('You are logged out')
+
+    router.push('/login')
+}
+
+
 </script>
