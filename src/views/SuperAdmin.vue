@@ -40,9 +40,9 @@
                         {{ companies.city}}
                     </td>
                     <td class="py-3 px-6 text-left whitespace-nowrap">
-                        <button class="bg-blue-500 text-white rounded-full p-2" @click="download(companies.document_validation)">
-                            Download
-                        </button>
+                            <button class="bg-blue-500 text-white rounded-full p-2" @click="download(companies.document_validation)">
+                                Download
+                            </button>
                     </td>
                     <td class="py-3 px-6 text-left whitespace-nowrap">
                         {{ companies.email}}

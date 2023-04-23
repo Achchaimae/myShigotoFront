@@ -6,7 +6,7 @@
           <table class="table-auto min-w-max w-full">
             <thead>
               <tr class="bg-gray-200 text-gray-600 h-14 text-sm py-4 leading-normal">
-                <th class="hidden sm:table-cell">Project</th>
+                <th class="hidden sm:table-cell">Name</th>
                 <th class="hidden sm:table-cell">CV</th>
                 <th>Email</th>
                 <th>Tel</th>
@@ -16,9 +16,9 @@
             <tbody class="text-gray-600 text-sm font-light text-center">
               <tr class="border-b border-gray-200 hover:bg-gray-100" v-for="applies in apply">
                 <td class="hidden sm:table-cell py-3 px-6 text-left whitespace-nowrap">{{ applies.FirstName }} {{  applies.LasttName }}</td>
-                <td class="hidden sm:table-cell py-3 px-6 text-left whitespace-nowrap">File</td>
+                <td class="hidden sm:table-cell py-3 px-6 text-left whitespace-nowrap"  @click="download(applies.cv)">Download</td>
                 <td class="py-3 px-6 text-left whitespace-nowrap">{{ applies.email }}</td>
-                <td class="py-3 px-6 text-left whitespace-nowrap">{{ applies.tel }}</td>
+                <td class="py-3 px-6 text-left whitespace-nowrap">{{ applies.phone }}</td>
                 <td class="py-3 px-6 text-left whitespace-nowrap gap-2 flex ">
                     <!-- accept and refuse button  -->
                     <div v-if="applies.status === 'pending'">
@@ -91,10 +91,29 @@ const refuse = (id) => {
     try {
       const res = await axios.get('http://127.0.0.1:8000/api/showPending');
       apply.value = res.data.data;
+      
     } catch (error) {
       console.log(error);
     }
   }
+  //download document
+function download(url) {
+    const extension = url.split('.').pop();
+      axios.get(url, { responseType: 'blob' })
+        .then(response => {
+          const blob = new Blob([response.data], { type: `application/${extension}` });
+          const url = window.URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', `document.${extension}`);
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+}
   
 onMounted(() => {
   applies();

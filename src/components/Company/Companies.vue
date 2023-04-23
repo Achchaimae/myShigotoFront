@@ -2,9 +2,12 @@
     <main>
         <div class="m-4 flex  justify-around gap-4 flex-wrap">
             <CompanyCard v-for="card in company" 
+            :key="card.id"
             :CompanyName="card.FirstName" 
             :CompanyLogo="card.image"
-            :CompanyLocation="card.city" />
+            :CompanyLocation="card.city" 
+            :id="card.id"
+            />
         </div>
     </main>
 </template>
@@ -25,7 +28,6 @@ try {
   const res = await axios.get('http://127.0.0.1:8000/api/showCompany');
   const data = res.data;
   company.value = data.data;
-  console.log(data.data);
   
 } catch (err) {
   errors.value.push(err);
@@ -38,4 +40,5 @@ onMounted(loadPosts);
 const obj = reactive({
     cards : [],
 })
+
 </script>

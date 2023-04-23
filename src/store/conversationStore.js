@@ -45,9 +45,11 @@ export const conversationStore = defineStore('conversationStore', {
                     )
         }
     },
+    
     checkConversation(i)
     {
         this.messages = this.conversations[i]
     }
   }
+  
 })

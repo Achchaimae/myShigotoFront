@@ -22,6 +22,7 @@
         <a href="/Jobs" class="block px-4 py-2 text-white hover:bg-gray-700"> Jobs </a>
         <a href="/company" class="block px-4 py-2 text-white hover:bg-gray-700"> Companies </a>
         <a href="/Messages" class="block px-4 py-2 text-white hover:bg-gray-700"> Messages </a>
+        <!-- if the user not login show me the sing up button alse show me sign up button using the token in localstorage -->
         <div class=" bg-[#9191E9;] block px-4 py-2 ">
           <a href="/Login">Sing up</a>
         </div>
@@ -44,6 +45,8 @@ export default {
     toggleMenu() {
       this.menuOpen = !this.menuOpen;
     }
+   //logout function
+   
   }
 }
 </script>

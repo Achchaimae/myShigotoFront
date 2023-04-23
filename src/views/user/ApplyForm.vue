@@ -15,6 +15,8 @@
                   <p>Please fill out all the fields.</p>
                 </div>
                 <form class="lg:col-span-2" @submit.prevent="Apply" method="post">
+                  <!-- input hidden for the name of the post -->
+                  <input type="hidden" name="post" v-model="form.post" />
                   <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                     <div class="md:col-span-5">
                       <label for="FirstName">First Name</label>
@@ -109,6 +111,7 @@ const form = ref({
   phone: "",
   address: "",
   cv: "",
+  title: "",
 });
 const errors = ref({});
 const uploadFile = (e) => {
@@ -133,7 +136,7 @@ const Apply = async () => {
     formData.append("FirstName", form.value.FirstName);
     formData.append("LastName", form.value.LastName);
     formData.append("email", form.value.email);
-    formData.append("phone", form.value.Phone);
+    formData.append("phone", form.value.phone);
     formData.append("address", form.value.address);
     formData.append("cv", form.value.cv);
     formData.append("post_id", id);

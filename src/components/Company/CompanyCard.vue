@@ -15,17 +15,21 @@
                     <button class="bg-white border-2 border-[#531CB3] bg-opacity-20 rounded-full px-4 py-1 hover:bg-[#531CB3] ">
                         Offre
                     </button>
-                    <button class="bg-white border-2 border-[#531CB3] bg-opacity-20 rounded-full px-4 py-1 hover:bg-[#531CB3] ">
+                    <button class="bg-white border-2 border-[#531CB3] bg-opacity-20 rounded-full px-4 py-1 hover:bg-[#531CB3] "  >
                         About
                     </button>
-                    <button class="bg-white border-2 border-[#531CB3] bg-opacity-20 rounded-full px-4 py-1 hover:bg-[#531CB3] ">
-                        Q&A
+                    <button class="bg-white border-2 border-[#531CB3] bg-opacity-20 rounded-full px-4 py-1 hover:bg-[#531CB3] " @click="createConversation(id)"> 
+                        Contact Us
                     </button>
                 </div>
             </div>
 </template>
 <script setup>
 import { defineProps } from "vue";
+import axios from 'axios';
+import { useRouter } from 'vue-router';
+import { reactive , ref , onMounted} from 'vue';
+const router = useRouter()
 const props = defineProps({
     CompanyLogo: {
         type: String,
@@ -38,6 +42,43 @@ const props = defineProps({
     CompanyLocation: {
         type: String,
         required: true
+    },
+    id : {
+        type:Number,
+        required: true
     }
 });
+
+
+const handleClick = (id) => {
+    console.log(`I was clicked ${id}`);
+    console.log(props.CompanyLocation);
+
+
+};
+    const  userId =localStorage.getItem('id');
+    const token = localStorage.getItem('token');
+const createConversation= (id) => {
+  
+      if(userId){
+
+        axios.post('http://127.0.0.1:8000/api/conversation', {
+          client_id: userId,
+          owner_id: id
+        },
+          {
+            headers: {
+              "Content-type": "application/json",
+              "Authorization": `Bearer ${token}`,
+            }
+          }
+        )
+        .then(() => router.push('/messages'))
+      }else {
+        //push to login
+        router.push('/login')
+      }
+    };
+
+
 </script>
