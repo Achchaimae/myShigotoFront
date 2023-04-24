@@ -1,6 +1,6 @@
 <template>
     <main class="flex ">
-        <Navbar  class="text-white"/>
+        <Navbar class="text-white" />
         <section class="w-[80%] bg-white m-auto h-[90vh] rounded-lg p-4 flex justify-center">
             <div class="bg-white  rounded-lg w-full h-[85vh] m-4">
                 <div v-if="!conversationStore().Loading" class="flex m-6 space-x-4 h-[90vh]">
@@ -8,14 +8,29 @@
                         <div @click="conversationStore().checkConversation(i)"
                             v-for="conversation, i in conversationStore().conversations" :key="conversation"
                             class="flex space-x-4 bg-[#F4F5F8] p-2 m-2 rounded-lg">
-                            <img class="h-[40px] w-[40px] rounded-full" :src="conversation.client.image" alt="">
-                            <span class="font-medium text-xs my-auto">{{ conversation.client.name }} </span>
+                            <!-- <img class="h-[40px] w-[40px] rounded-full" :src="conversation.client.image" alt=""> -->
+                            <div
+                            class="h-[40px] w-[40px] rounded-full bg-blue-500 p-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <span class="font-medium text-xs my-auto">{{ conversation.client.FirstName }} </span>
                         </div>
                     </div>
                     <div class="w-full  h-[80vh] bg-white rounded-lg p-2">
                         <div class="flex space-x-4 bg-[#9191E9] p-2 rounded-lg">
-                            <img class="h-[40px] w-[40px] rounded-full" :src="conversationStore().messages.client.image"
-                                alt="">
+                            <div
+                            class="h-[40px] w-[40px] rounded-full bg-blue-300 p-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                               
+                            </div>
                             <span class="font-medium my-auto">{{ conversationStore().messages.client.FirstName }}</span>
                         </div>
                         <div class="h-[76%] overflow-y-auto m-2 relative">
@@ -75,7 +90,7 @@
 </template>
 <script setup>
 import Navbar from '@/components/Companies/Navbar.vue'
-import { onMounted , onBeforeMount} from "vue";
+import { onMounted, onBeforeMount } from "vue";
 import { conversationStore } from "@/store/conversationStore";
 // import { useStore } from "vuex"  ;
 
