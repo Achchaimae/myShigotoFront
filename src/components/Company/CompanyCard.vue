@@ -16,7 +16,9 @@
                         Offre
                     </button>
                     <button class="bg-white border-2 border-[#531CB3] bg-opacity-20 rounded-full px-4 py-1 hover:bg-[#531CB3] "  >
-                        About
+                       <!-- routerlik with the id of the company -->
+                        <router-link :to="{name:'aboutcompany',params:{id:id}}">About</router-link>
+                     
                     </button>
                     <button class="bg-white border-2 border-[#531CB3] bg-opacity-20 rounded-full px-4 py-1 hover:bg-[#531CB3] " @click="createConversation(id)"> 
                         Contact Us
@@ -50,12 +52,12 @@ const props = defineProps({
 });
 
 
-const handleClick = (id) => {
-    console.log(`I was clicked ${id}`);
-    console.log(props.CompanyLocation);
+// const handleClick = (id) => {
+//     console.log(`I was clicked ${id}`);
+//     console.log(props.CompanyLocation);
 
 
-};
+// };
     const  userId =localStorage.getItem('id');
     const token = localStorage.getItem('token');
 const createConversation= (id) => {
