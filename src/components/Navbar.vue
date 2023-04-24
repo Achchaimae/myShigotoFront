@@ -8,7 +8,6 @@
       <a href="/Jobs"> Jobs </a>
       <a href="/company"> Companies </a>
       <a href="/Messages"> Messages </a>
-      
     </div>
     <div class="flex md:hidden">
       <button @click="toggleMenu" class="flex items-center px-3 py-2 rounded text-white hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700">
@@ -22,31 +21,48 @@
         <a href="/Jobs" class="block px-4 py-2 text-white hover:bg-gray-700"> Jobs </a>
         <a href="/company" class="block px-4 py-2 text-white hover:bg-gray-700"> Companies </a>
         <a href="/Messages" class="block px-4 py-2 text-white hover:bg-gray-700"> Messages </a>
-        <!-- if the user not login show me the sing up button alse show me sign up button using the token in localstorage -->
-        <div class=" bg-[#9191E9;] block px-4 py-2 ">
-          <a href="/Login">Sing up</a>
+        <div class=" bg-[#9191E9;] block px-4 py-2" v-if="isLoggedIn">
+          <button @click.prevent="logout">Logout</button> 
+        </div>
+        <div class=" bg-[#9191E9;] block px-4 py-2" v-else>
+          <a href="/Login">Sign up</a>
         </div>
       </div>
     </div>
-    <div class="hidden md:block bg-[#9191E9;] p-2 rounded">
-      <a href="/Login">Sing up</a>
+    <div class="hidden md:block bg-[#9191E9;] p-2 rounded" v-if="!isLoggedIn">
+      <a href="/Login">Sign up</a>
+    </div>
+    <div class="hidden md:block bg-[#9191E9;] p-2 rounded" v-else>
+      <a href="/" @click.prevent="logout">Logout</a>
     </div>
   </section>
 </template>
 
 <script>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { toast } from 'vue3-toastify';
+
 export default {
   data() {
     return {
       menuOpen: false
     }
   },
+  computed: {
+    isLoggedIn() {
+      return localStorage.getItem('token') !== null;
+    }
+  },
   methods: {
     toggleMenu() {
       this.menuOpen = !this.menuOpen;
+    },
+    logout() {
+      localStorage.removeItem('token');
+      toast.success('Logged out successfully');
+      this.$router.push('/Login');
     }
-   //logout function
-   
   }
 }
 </script>
