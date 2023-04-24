@@ -13,6 +13,7 @@ import superAdmin from '@/views/SuperAdmin.vue'
 import addoffre from '@/views/company/Gestion/AddOffre.vue'
 import editoffre from '@/views/company/Gestion/EditOffre.vue'
 import apply from '@/views/user/ApplyForm.vue'
+import aboutcompany from '@/views/user/AboutCompany.vue'
 import CompanyProfile from '@/views/company/CompanyProfile.vue'
 
 const routes = [
@@ -106,6 +107,19 @@ const routes = [
         name: 'Apply',
         component: apply
     }, 
+    {
+        path: '/aboutcompany/:id',
+        name: 'aboutcompany',
+        component: aboutcompany
+    },
+    {
+        path: '/CompanyProfile/:id',
+        name: 'CompanyProfile',
+        component: CompanyProfile,
+        meta : {
+            companyAuth : true
+        }
+    }
 
 
 ];
