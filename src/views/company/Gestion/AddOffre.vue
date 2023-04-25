@@ -2,72 +2,79 @@
     <main class="flex  ">
         <Navbar />
         <section class=" w-[80%] m-auto rounded-lg p-4 shadow-lg  bg-white bg-opacity-20 ">
-            <form @submit.prevent="storePost" method="post" class="flex flex-col bg-[#9191E9]   px-8 py-4 justify-around items-center" enctype="multipart/form-data">
-            <input type="file" id="file-upload" class="hidden bg-white" v-on:change="uploadimage" >
-                <label for="file-upload" class="z-20 flex flex-col-reverse  bg-white  items-center justify-center w-40 h-40 rounded-full cursor-pointer">
+            <form @submit.prevent="storePost" method="post"
+                class="flex flex-col bg-[#9191E9]   px-8 py-4 justify-around items-center" enctype="multipart/form-data">
+                <input type="file" id="file-upload" class="hidden bg-white" v-on:change="uploadimage">
+                <label for="file-upload"
+                    class="z-20 flex flex-col-reverse  bg-white  items-center justify-center w-40 h-40 rounded-full cursor-pointer">
                     <p class="z-10 text-xs font-light text-center  text-black">Drag & Drop your files here</p>
-                    <svg class="z-10 w-8 h-8 text-indigo-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="z-10 w-8 h-8 text-indigo-400" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
                         <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"></path>
                     </svg>
                 </label>
-            
-            <label for="title" class="text-black font-semibold">Title</label>
-            <input type="text" v-model="form.title" class="w-[70%] py-2 rounded" placeholder="Insert the Title of the Offre ">
-            <div v-if="errors.title">
-                <span class="text-red-500">{{ errors.title }}</span>
-            </div>
-            <label for="description" class="text-black font-semibold">Description</label>
-            <input type="text" v-model="form.description" class="w-[70%] h-20 py-2 rounded items-start" placeholder="Insert the instruction of the offre ...">
-            <div v-if="errors.description">
-                <span class="text-red-500">{{ errors.description }}</span>
-            </div>
-            <label for="tag" class="text-black font-semibold">Tag</label>
-            <input type="text" v-model="form.tag" class="w-[70%] py-2 rounded" placeholder="Put The tags of the poste">
-             <div v-if="errors.tag">
-                <span class="text-red-500">{{ errors.tag }}</span>
-             </div>
-            <label for="city" class="text-black font-semibold">City</label>
-            <input type="text" v-model="form.city" class="w-[70%] py-2 rounded" placeholder="Insert the city ">
-            <div v-if="errors.city">
-                <span class="text-red-500">{{ errors.city }}</span>
-            </div>
-            <label for="type" class="text-black font-semibold">Type</label>
-            <input type="text" v-model="form.type_of_post" class="w-[70%] py-2 rounded" placeholder=" What is the type of the job (exemple : CDI/PFE) ">
-            <div v-if="errors.type">
-                <span class="text-red-500">{{ errors.type }}</span>
-            </div>
-            <button type="submit" class="bg-[#531CB3] mt-4 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-[#531CB3] hover:bg-opacity-80">
-                Add Offre
-            </button>
-        </form>
+
+                <label for="title" class="text-black font-semibold">Title</label>
+                <input type="text" v-model="form.title" class="w-[70%] py-2 rounded"
+                    placeholder="Insert the Title of the Offre ">
+                <div v-if="errors.title">
+                    <span class="text-red-500">{{ errors.title }}</span>
+                </div>
+                <label for="description" class="text-black font-semibold">Description</label>
+                <input type="text" v-model="form.description" class="w-[70%] h-20 py-2 rounded items-start"
+                    placeholder="Insert the instruction of the offre ...">
+                <div v-if="errors.description">
+                    <span class="text-red-500">{{ errors.description }}</span>
+                </div>
+                <label for="tag" class="text-black font-semibold">Tag</label>
+                <input type="text" v-model="form.tag" class="w-[70%] py-2 rounded" placeholder="Put The tags of the poste">
+                <div v-if="errors.tag">
+                    <span class="text-red-500">{{ errors.tag }}</span>
+                </div>
+                <label for="city" class="text-black font-semibold">City</label>
+                <input type="text" v-model="form.city" class="w-[70%] py-2 rounded" placeholder="Insert the city ">
+                <div v-if="errors.city">
+                    <span class="text-red-500">{{ errors.city }}</span>
+                </div>
+                <label for="type" class="text-black font-semibold">Type</label>
+                <input type="text" v-model="form.type_of_post" class="w-[70%] py-2 rounded"
+                    placeholder=" What is the type of the job (exemple : CDI/PFE) ">
+                <div v-if="errors.type">
+                    <span class="text-red-500">{{ errors.type }}</span>
+                </div>
+                <button type="submit"
+                    class="bg-[#531CB3] mt-4 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-[#531CB3] hover:bg-opacity-80">
+                    Add Offre
+                </button>
+            </form>
         </section>
     </main>
-
-
 </template>
 <script setup>
 
 import Navbar from '@/components/Companies/Navbar.vue'
 import { useRouter } from 'vue-router';
 import axios from 'axios';
-import { reactive , ref } from 'vue';
+import { reactive, ref } from 'vue';
 // create a post
 const router = useRouter();
-let image="";
-
+let image = "";
+const id = localStorage.getItem('id');
+console.log(id);
 let form = reactive({
     title: '',
     description: '',
     tag: '',
     city: '',
     type_of_post: '',
+    user_id: '',
     image: null,
 });
 const errors = ref({});
 
 const uploadimage = (e) => {
     form.image = e.target.files[0];
-    console.log(form.image);
+    // console.log(form.image);
 };
 
 const storePost = async () => {
@@ -78,30 +85,36 @@ const storePost = async () => {
     formData.append('city', form.city);
     formData.append('type_of_post', form.type_of_post);
     formData.append('image', form.image);
-    
-console.log(formData);
+    formData.append('user_id', id);
+    // console.log(formData);
     await axios.post("http://127.0.0.1:8000/api/V1/posts", formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
+
     })
-    .then((res) => {
-        Swal.fire({
+        .then((res) => {
+            Swal.fire({
                 icon: 'success',
                 title: 'Success!',
                 text: 'the offre has been added successfully',
                 confirmButtonText: 'Ok'
-                }).then((result) => {
+            }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = '/myCompany'; 
+                    window.location.href = '/myCompany';
                 }
-                });
-    })
-    .catch((err) => {
-       if(err.response.status == 422){
-           errors.value = err.response.data.errors;
-       }
-    });
+            });
+        })
+        .catch((err) => {
+            if (err.response.status == 422) {
+                errors.title = err.response.data.errors.title;
+                errors.description = err.response.data.errors.description;
+                errors.tag = err.response.data.errors.tag;
+                errors.city = err.response.data.errors.city;
+                errors.type = err.response.data.errors.type_of_post;
+
+            }
+        });
 };
 
 </script>
