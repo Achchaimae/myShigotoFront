@@ -1,5 +1,5 @@
 <template>
-  <div class="text-white">
+  <div class="text-white scroll-smooth">
     <Navbar />
     <section
       class="flex flex-col gap-8 md:flex-row text-white items-center justify-center w-5/6 mx-auto"
@@ -40,11 +40,14 @@
               />
             </svg>
           </button>
-          <div class="bg-white flex flex-col gap-2">
+          <div class="bg-white flex flex-col gap-2 rounded-lg px-4">
               <div v-for="result in resultSearch" class="flex justify-between">
                 <p>{{ result.title }}</p>
-                <button>
-                  {{ result.id }}
+                <button >
+                  <a href="#card" class="scroll-smooth">
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                
                 </button>
               </div>
             </div>
@@ -88,7 +91,7 @@
     <div class="font-semibold text-4xl myt-2 leading-12 pl-4 text-center">
       <span class="text-[#531CB3]">Latest</span> Jobs Opportunitys
     </div>
-    <PostCards />
+    <PostCards id="card" />
     <Footer />
   </div>
 </template>
