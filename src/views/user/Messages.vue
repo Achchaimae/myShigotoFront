@@ -9,13 +9,13 @@
                 <div @click="conversationStore().checkConversation(i)"
                     v-for="conversation, i in conversationStore().conversations" :key="conversation"
                     class="flex space-x-4 bg-[#F4F5F8] p-2 m-2 rounded-lg">
-                    <img class="h-[40px] w-[40px] rounded-full" :src="conversation.owner.image" alt="">
-                    <span class="font-medium text-xs my-auto">{{ conversation.owner.name }} </span>
+                    <img class="h-[40px] w-[40px] rounded-full object-contain" :src="conversation.owner.image" alt="">
+                    <span class="font-medium text-xs my-auto">{{ conversation.owner.FirstName }} </span>
                 </div>
             </div>
             <div class="w-full h-[80vh] bg-white rounded-lg p-2">
                 <div class="flex space-x-4 bg-[#9191E9] p-2 rounded-lg">
-                    <img class="h-[40px] w-[40px] rounded-full" :src="conversationStore().messages.owner.image" alt="">
+                    <img class="h-[40px] w-[40px] rounded-full object-contain bg-blue-300" :src="conversationStore().messages.owner.image" alt="">
                     <span class="font-medium my-auto">{{ conversationStore().messages.owner.FirstName }}</span>
                 </div>
                 <div class="h-[76%] overflow-y-auto m-2 relative">
