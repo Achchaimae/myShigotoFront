@@ -13,14 +13,11 @@
           </div>
 
           <div class="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
-            <button
+            <!-- <button
               class="text-white py-2 px-4 uppercase rounded bg-[#9191E9] hover:bg-[#531CB3] shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
               Update
             </button>
-            <button
-              class="text-white py-2 px-4 uppercase rounded bg-red-700 hover:bg-red-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
-              Delete Account
-            </button>
+             -->
           </div>
         </div>
 
