@@ -100,7 +100,10 @@ const routes = [
     {
         path :'/edit-offre/:id',
         name : 'edit-offre',
-        companyAuth : editoffre
+        component : editoffre ,
+        meta : {
+            companyAuth : true
+        }
     },
     {
         path: '/apply/:id',
