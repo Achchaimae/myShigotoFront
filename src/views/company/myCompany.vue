@@ -74,14 +74,18 @@ const router = useRouter();
 const posts = ref([]);
 const errors = ref([]);
 const offres = ref([]);
+const user_id = localStorage.getItem('id');
 //get the offre id to delete it
 
 
 const loadPosts = async () => {
   try {
-    const res = await axios.get('http://127.0.0.1:8000/api/V1/posts');
-    const data = res.data;
-    offres.value = data.data;
+    const {data:res} = await axios.get('http://127.0.0.1:8000/api/V1/myPosts', {
+      params: {
+        user_id: user_id
+      }
+    });
+    offres.value = res;
     
   } catch (err) {
     console.log(err);
