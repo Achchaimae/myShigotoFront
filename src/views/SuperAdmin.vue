@@ -42,10 +42,11 @@
                                 <button class="bg-blue-500 text-white rounded-full p-2"
                                     @click="download(companies.document_validation)">
                                     Download
+
                                 </button>
                             </td>
                             <td class="py-3 px-6 text-left whitespace-nowrap">
-                                {{ companies.email }}
+                                <a :href="'mailto:' + companies.email">{{ companies.email }}</a>
                             </td>
                             <td class="py-3 px-6 text-left whitespace-nowrap gap-2 flex ">
                                 <!-- accept and refuse button  -->
