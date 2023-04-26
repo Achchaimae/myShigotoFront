@@ -4,10 +4,10 @@
       <img src="@/assets/images/logo.png" alt="logo" />
     </div>
     <div class="hidden md:flex justify-between gap-8 font-semibold mt-1">
-      <a href="/"> Home </a>
-      <a href="/Jobs"> Jobs </a>
-      <a href="/company"> Companies </a>
-      <a href="/Messages"> Messages </a>
+      <routerLink to="/"> Home </routerLink>
+      <routerLink to="/Jobs"> Jobs </routerLink>
+      <routerLink to="/company"> Companies </routerLink>
+      <routerLink to="/Messages"> Messages </routerLink>
     </div>
     <div class="flex md:hidden">
       <button @click="toggleMenu" class="flex items-center px-3 py-2 rounded text-white hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700">
@@ -17,23 +17,23 @@
         </svg>
       </button>
       <div v-if="menuOpen" class="absolute right-0 top-12 w-48 py-2 bg-gray-800 rounded shadow-xl z-10">
-        <a href="/" class="block px-4 py-2 text-white hover:bg-gray-700"> Home </a>
-        <a href="/Jobs" class="block px-4 py-2 text-white hover:bg-gray-700"> Jobs </a>
-        <a href="/company" class="block px-4 py-2 text-white hover:bg-gray-700"> Companies </a>
-        <a href="/Messages" class="block px-4 py-2 text-white hover:bg-gray-700"> Messages </a>
+        <routerLink to="/" class="block px-4 py-2 text-white hover:bg-gray-700"> Home </routerLink>
+        <RouterLink to="/Jobs" class="block px-4 py-2 text-white hover:bg-gray-700"> Jobs </RouterLink>
+        <routerLink to="/company" class="block px-4 py-2 text-white hover:bg-gray-700"> Companies </routerLink>
+        <routerLink to="/Messages" class="block px-4 py-2 text-white hover:bg-gray-700"> Messages </routerLink>
         <div class=" bg-[#9191E9;] block px-4 py-2" v-if="isLoggedIn">
           <button @click.prevent="logout">Logout</button> 
         </div>
         <div class=" bg-[#9191E9;] block px-4 py-2" v-else>
-          <a href="/Login">Sign up</a>
+          <routerLink to="/Login">Sign up</routerLink>
         </div>
       </div>
     </div>
     <div class="hidden md:block bg-[#9191E9;] p-2 rounded" v-if="!isLoggedIn">
-      <a href="/Login">Sign up</a>
+      <routerLink to="/Login">Sign up</routerLink>
     </div>
     <div class="hidden md:block bg-[#9191E9;] p-2 rounded" v-else>
-      <a href="/" @click.prevent="logout">Logout</a>
+      <routerLink to="/" @click.prevent="logout">Logout</routerLink>
     </div>
   </section>
 </template>
