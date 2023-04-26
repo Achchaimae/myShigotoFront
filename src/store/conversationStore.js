@@ -6,7 +6,18 @@ export const conversationStore = defineStore('conversationStore', {
     conversations:{},
     messages:{},
     Loading:'',
+    allJobs: [],
+    searchByName: '',
   }),
+  getters: {
+    filterByJob() {
+        if (!this.searchByName) {
+            return this.allJobs;
+        }
+        // return this.allJobs.filter(products => products.category_id == this.category_id);
+        return this.allJobs.filter(job => job.title.toLowerCase().includes(this.searchByName.toLowerCase()));
+    }
+},
   actions:{
     getConversations(id,token){
         this.Loading=true;
@@ -49,7 +60,18 @@ export const conversationStore = defineStore('conversationStore', {
     checkConversation(i)
     {
         this.messages = this.conversations[i]
-    }
+    },
+
+    async loadPosts() {
+        try {
+          const res = await axios.get('http://127.0.0.1:8000/api/V1/posts');
+          const data = res.data;
+          this.allJobs = data.data;
+        //   console.log(this.allJobs);
+        } catch (err) {
+          errors.value.push(err);
+        }
+    },
   }
   
 })

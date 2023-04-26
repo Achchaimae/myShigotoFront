@@ -1,13 +1,14 @@
 <template>
   <main>
       <div class="flex justify-around gap-4 flex-wrap">
-          <JobCard v-for="card in offres"
+          <JobCard v-for="card in store.filterByJob"
                   :Offreid="card.id"
                   :CompanyName="card.title"
                   :CompanyLogo="getImageUrl(card.image)"
                   :OffreName="card.title"
                   :OffreDesciption="card.description"
-                  :createdAt="formatDate(card.created_at)" />
+                  :createdAt="formatDate(card.created_at)" 
+          />
       </div>
   </main>
 
@@ -19,8 +20,11 @@ import axios from 'axios';
 import { reactive , ref , onMounted} from 'vue';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { conversationStore } from '../../store/conversationStore';
 
 dayjs.extend(relativeTime);
+
+const store = conversationStore();
 
 const router = useRouter();
 //showing all the posts
@@ -38,7 +42,7 @@ try {
   errors.value.push(err);
 }
 };
-onMounted(loadPosts);
+onMounted(store.loadPosts);
 
 // to get how much hour ago the post was created
 const formatDate = (date) => {

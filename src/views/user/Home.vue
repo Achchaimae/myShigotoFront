@@ -14,8 +14,7 @@
         <div class="relative text-gray-600 w-full">
           <input
             type="search"
-            name="search"
-            v-model="searchValue"
+            v-model="store.searchByName"
             @input="search"
             placeholder="Job title or keyword"
             class="bg-white h-10 px-5 pr-10 rounded-full w-full text-sm focus:outline-none"
@@ -41,7 +40,7 @@
             </svg>
           </button>
           <div class="bg-white flex flex-col gap-2 rounded-lg px-4">
-              <div v-for="result in resultSearch" class="flex justify-between">
+              <div v-if="store.searchByName != ''" v-for="result in store.filterByJob" class="flex justify-between">
                 <p>{{ result.title }}</p>
                 <button >
                   <a href="#card" class="scroll-smooth">
@@ -105,6 +104,10 @@ import Footer from "@/components/Footer.vue";
 import axios from "axios";
 import { onMounted, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
+import { conversationStore } from "@/store/conversationStore";
+
+const store = conversationStore();
+// console.log(store.searchByName);
 
 //search job
 const router = useRouter();

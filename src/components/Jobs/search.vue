@@ -2,11 +2,11 @@
 <template>
 <div class="relative text-gray-600 w-full sm:w-[70%]">
     <input 
-    type="search" 
-    v-model="searchValue" 
-    @submit="search"
-    placeholder="Job title or keyword"
-    class="bg-white h-10 px-5 pr-10 rounded-full w-full text-sm focus:outline-none" />
+      type="text" 
+      v-model="store.searchByName"
+      placeholder="Job title or keyword"
+      class="bg-white h-10 px-5 pr-10 rounded-full w-full text-sm focus:outline-none" 
+    />
     <button type="submit" class="absolute right-0 top-0 mt-3 mr-4">
         <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
@@ -26,20 +26,23 @@ import SearchCard from '@/components/Jobs/SearchCard.vue'
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 //get the value from the search input
-const searchValue = ref("");
+// const searchValue = ref("");
+import { conversationStore } from "@/store/conversationStore";
+
+const store = conversationStore();
 
 // console.log('tesssst');
 
 //search function
-const search = () => {
-    // console.log(searchValue.value);
+// const search = () => {
+//     // console.log(searchValue.value);
    
-    router.push({ name: 'search', params: { searchValue: searchValue.value } });
-    searchPosts(searchValue.value);
-    // console.log(searchValue.value);
+//     router.push({ name: 'search', params: { searchValue: searchValue.value } });
+//     searchPosts(searchValue.value);
+//     // console.log(searchValue.value);
 
 
-};
+// };
 const router = useRouter();
 
 const searchPosts = async (title) => {
