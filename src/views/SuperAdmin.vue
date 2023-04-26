@@ -11,10 +11,11 @@
         </section>
         <section class="w-[90%] bg-white m-auto h-[90vh] rounded-lg p-4 text-center flex flex-col gap-8 text-black">
             <h1 class="text-2xl font-bold">Welcome Back <span class="text-[#9191E9]">Achchaimae Khalaf</span></h1>
-            <div>
-                <table class="min-w-max w-full table-auto">
+            <div class="overflow-x-auto">
+                <table class="table-auto min-w-max w-full">
 
                     <thead>
+
                         <tr class="bg-gray-200 text-gray-600 h-14 text-sm py-4 leading-normal">
                             <th>Company </th>
                             <th>City </th>
@@ -23,46 +24,46 @@
                             <th>Status</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-600 text-sm font-light items-center ">
+                    <tbody class="text-gray-600 text-sm font-light divide-y divide-gray-200">
 
                         <tr class="border-b border-gray-200 hover:bg-gray-100 items-center" v-for="companies in company">
 
-                            <td class="py-3 px-6 text-left whitespace-nowrap flex ">
-                                <div class="mr-2">
-                                    <img class="w-12 h-12 rounded-full  object-contain bg-red-300" :src="companies.image" />
-                                </div>
-                                <span class="font-semibold">
-                                    {{ companies.FirstName }}
-                                </span>
-                            </td>
-                            <td class="py-3 px-6 text-left whitespace-nowrap">
-                                {{ companies.city }}
-                            </td>
-                            <td class="py-3 px-6 text-left whitespace-nowrap">
-                                <button class="bg-blue-500 text-white rounded-full p-2"
-                                    @click="download(companies.document_validation)">
-                                    Download
-
-                                </button>
-                            </td>
-                            <td class="py-3 px-6 text-left whitespace-nowrap">
-                                <a :href="'mailto:' + companies.email">{{ companies.email }}</a>
-                            </td>
-                            <td class="py-3 px-6 text-left whitespace-nowrap gap-2 flex ">
-                                <!-- accept and refuse button  -->
-                                <div v-if="companies.validation === 'pending'">
-                                    <button class="bg-green-500 text-white rounded-lg p-2"
-                                        @click="accept(companies.id)">Accept</button>
-                                    <button class="bg-red-500 text-white rounded-lg p-2"
-                                        @click="refuse(companies.id)">Refuse</button>
-                                </div>
-                                <div v-else>
-                                    {{ companies.validation }}
-                                </div>
-
-                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                        <div class="mr-2">
+                            <img class="w-12 h-12 rounded-full object-contain bg-red-300" :src="companies.image" />
+                        </div>
+                        <div class="text-sm font-semibold">
+                            {{ companies.FirstName }}
+                        </div>
+                    </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">{{ companies.city }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                        <button class="bg-blue-500 text-white rounded-full p-2 mr-2"
+                            @click="download(companies.document_validation)">
+                            Download
+                        </button>
+                    </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <a :href="'mailto:' + companies.email">{{ companies.email }}</a>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                        <div v-if="companies.validation === 'pending'">
+                            <button class="bg-green-500 text-white rounded-lg p-2 mr-2"
+                                @click="accept(companies.id)">Accept</button>
+                            <button class="bg-red-500 text-white rounded-lg p-2 mr-2"
+                                @click="refuse(companies.id)">Refuse</button>
+                        </div>
+                        <div v-else>
+                            {{ companies.validation }}
+                        </div>
+                    </div>
+                </td>
                         </tr>
-
                     </tbody>
                 </table>
             </div>
