@@ -1,130 +1,137 @@
 <template>
-    <main class="flex flex-row sm:flex-row gap-4 scroll-none">
-      <Navbar class="sm:w-[15]"/>
-      <section class="w-full sm:w-[80%] bg-white m-auto h-[90vh] rounded-lg p-4 text-center">
-        <div class="overflow-x-auto">
-          <table class="table-auto min-w-max w-full">
-            <thead>
-              <tr class="bg-gray-200 text-gray-600 h-14 text-sm py-4 leading-normal">
-                <th class="hidden sm:table-cell">Name</th>
-                <th class="hidden sm:table-cell">CV</th>
-                <th>Email</th>
-                <th>Tel</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody class="text-gray-600 text-sm font-light text-center">
-              <tr class="border-b border-gray-200 hover:bg-gray-100" v-for="applies in apply">
-                <td class="hidden sm:table-cell py-3 px-6 text-left whitespace-nowrap">{{ applies.FirstName }} {{  applies.LasttName }}</td>
-                <td class="hidden sm:table-cell py-3 px-6 text-left whitespace-nowrap"  @click="download(applies.cv)">Download</td>
-                <td class="py-3 px-6 text-left whitespace-nowrap">{{ applies.email }}</td>
-                <td class="py-3 px-6 text-left whitespace-nowrap">{{ applies.phone }}</td>
-                <td class="py-3 px-6 text-left whitespace-nowrap gap-2 flex ">
-                    <!-- accept and refuse button  -->
-                    <div v-if="applies.status === 'pending'">
-                        <button class="bg-green-500 text-white rounded-lg p-2" @click="accept(applies.id)">Accept</button>
-                        <button class="bg-red-500 text-white rounded-lg p-2" @click="refuse(applies.id)">Refuse</button>
-                    </div>
-                    <div v-else>
-                        {{ applies.status }}
-                    </div>  
-                </td>
-              </tr>
-              
-            </tbody>
-          </table>
-        </div>
-      </section>
-    </main>
-  </template>
+  <main class="flex flex-row sm:flex-row gap-4 scroll-none">
+    <Navbar class="sm:w-[15]" />
+    <section class="w-full sm:w-[80%] bg-white m-auto h-[90vh] rounded-lg p-4 text-center">
+      <div class="overflow-x-auto">
+        <table class="table-auto min-w-max w-full">
+          <thead>
+            <tr class="bg-gray-200 text-gray-600 h-14 text-sm py-4 leading-normal">
+              <th class="hidden sm:table-cell">Name</th>
+              <th class="hidden sm:table-cell">CV</th>
+              <th>Email</th>
+              <th>Tel</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-600 text-sm font-light text-center">
+            <tr class="border-b border-gray-200 hover:bg-gray-100" v-for="applies in apply">
+              <td class="hidden sm:table-cell py-3 px-6 text-left whitespace-nowrap">{{ applies.FirstName }} {{
+                applies.LastName }}</td>
+              <td class="hidden sm:table-cell py-3 px-6 text-left whitespace-nowrap" @click="download(applies.cv)">
+                Download</td>
+              <td class="py-3 px-6 text-left whitespace-nowrap">
+                <a :href="'mailto:' + applies.email">{{ applies.email }}
+                </a>
+              </td>
+              <td class="py-3 px-6 text-left whitespace-nowrap">
+                <a :href="'tel:' + applies.phone">{{ applies.phone }}</a>
+              </td>
+              <td class="py-3 px-6 text-left whitespace-nowrap gap-2 flex ">
+                <!-- accept and refuse button  -->
+                <div v-if="applies.status === 'pending'">
+                  <button class="bg-green-500 text-white rounded-lg p-2" @click="accept(applies.id)">Accept</button>
+                  <button class="bg-red-500 text-white rounded-lg p-2" @click="refuse(applies.id)">Refuse</button>
+                </div>
+                <div v-else>
+                  {{ applies.status }}
+                </div>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</template>
   
-  <script setup>
-  import Navbar from '@/components/Companies/Navbar.vue'
-  import { useRouter } from 'vue-router';
-  import axios from 'axios';
-  import { reactive , ref , onMounted} from 'vue';
-  import { toast} from 'vue3-toastify';
-  import { createToast } from 'mosha-vue-toastify';
-  import 'mosha-vue-toastify/dist/style.css' 
+<script setup>
+import Navbar from '@/components/Companies/Navbar.vue'
+import { useRouter } from 'vue-router';
+import axios from 'axios';
+import { reactive, ref, onMounted } from 'vue';
+import { toast } from 'vue3-toastify';
+import { createToast } from 'mosha-vue-toastify';
+import 'mosha-vue-toastify/dist/style.css'
 
-  const router = useRouter();
+const router = useRouter();
 
 
-  const accept = (id) => {
-   axios.put('http://127.0.0.1:8000/api/accepte/'+id)
+const accept = (id) => {
+  axios.put('http://127.0.0.1:8000/api/accepte/' + id)
     .then(response => {
-        createToast('the application  get accepted',
+      createToast('the application  get accepted',
         {
-        
-        showIcon: 'true',
-        type: 'success',
-        position: 'bottom-left',
+
+          showIcon: 'true',
+          type: 'success',
+          position: 'bottom-left',
         })
 
 
     })
 
     .catch(error => {
-        console.log(error);
+      console.log(error);
     });
 
 }
 
 const refuse = (id) => {
-    axios.put('http://127.0.0.1:8000/api/reject/'+id)
+  axios.put('http://127.0.0.1:8000/api/reject/' + id)
     .then(response => {
-        createToast('the application get rejected',
+      createToast('the application get rejected',
         {
-        showIcon: 'true',
-        type: 'danger',
-        position: 'bottom-left',
+          showIcon: 'true',
+          type: 'danger',
+          position: 'bottom-left',
         })
     })
     .catch(error => {
-        console.log(error);
+      console.log(error);
     });
 }
 
-  const apply =ref(null);
+const apply = ref(null);
 
-  const applies = async () => {
-    try {
-      const res = await axios.get('http://127.0.0.1:8000/api/showPending');
-      apply.value = res.data.data;
-      
-    } catch (error) {
-      console.log(error);
-    }
+const applies = async () => {
+  try {
+    const res = await axios.get('http://127.0.0.1:8000/api/showPending');
+    apply.value = res.data.data;
+
+  } catch (error) {
+    console.log(error);
   }
-  //download document
-function download(url) {
-    const extension = url.split('.').pop();
-      axios.get(url, { responseType: 'blob' })
-        .then(response => {
-          const blob = new Blob([response.data], { type: `application/${extension}` });
-          const url = window.URL.createObjectURL(blob);
-          const link = document.createElement('a');
-          link.href = url;
-          link.setAttribute('download', `document.${extension}`);
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-        })
-        .catch(error => {
-          console.error(error);
-        });
 }
-  
+//download document
+function download(url) {
+  const extension = url.split('.').pop();
+  axios.get(url, { responseType: 'blob' })
+    .then(response => {
+      const blob = new Blob([response.data], { type: `application/${extension}` });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `document.${extension}`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+
 onMounted(() => {
   applies();
 });
-  </script>
+</script>
   
-  <style>
-  @media (max-width: 639px) {
-    .table-auto {
-      overflow-x: scroll;
-    }
+<style>
+@media (max-width: 639px) {
+  .table-auto {
+    overflow-x: scroll;
   }
-  </style>
+}
+</style>
   
